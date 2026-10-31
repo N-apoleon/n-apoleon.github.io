@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Klausur-Notenrechner</title>
+<!-- iPad/iPhone: als Vollbild-App vom Home-Bildschirm starten (ohne Adressleiste) -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Notenrechner">
+<meta name="application-name" content="Notenrechner">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<!-- Icons: Favicon (Browser-Tab) und Home-Bildschirm-Icon 180 × 180, direkt eingebettet -->
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAADPklEQVR42t1Wz4scVRD+qt7rX9MzWcddWd0NIhoQQVG8egi57EXEk3+A4NGDIKvk7EX/BhEERfAs6DmXgAf/ANGwBjSCMTObuDOzM/NefR56ZnZId5vZBS9p+tC8rlffq6++qldy9XPD//l4Mz62AARENnDBpXELQGzOgYoYbR6XHlofSdzC+BwRiGA0DYnE3e6jCbw7kom5PHXkZgAqmEzDs1vh07fKF3acSCtTJEj8NojXvxvdGvoi9fXTejOrH38yOf3w7fLlvaSV2rUEvPS0Hl7L3v1mlPlOIwBre+gx3+1J9UcehWDAbk9TzELI69YNAALGEGKkCoIxRp7tIpwTQI4nqMRRpihSBGMMUY31eJsBzFiJ5+5gNHgw9iqVUQjce6pblp3BCZwiEiGiSBdbrAXAmgAWi0/08k6eqICAUxGRLHHTCFU4AZcSJmFmZtZEUWyK4GxRnBOBEMyzxKkA8IQKqshTt7CzSIsbU0SyEnWWOhW3JkoCknpc7qPiQ3UJQBoJnoMiVjWxLt9W0a4ogmya5CqC4T+nJ+OprjFLIPHJDEU0ELiUY7sLrpKMc6gIAMwYjdBlSyONNHomUEEkZhEry4sAlEWaZ14gVQF2skQE04Dfh3CClSxJsB2gJQdc9FR1unQjJCHiFVvFotC62SqC8+YABJB4rbcKp9jpPrxosS2C5jpYfIe4KB8BCHhVdXI8weEPuHeC6RwfXMXBFZjRiLqr/6KoUtHfx6PBg0nVKkLkk1udvZ3ujSN8cRNQvP8GvvwJB1fAi1BEAuj3im4nE0BEnBMRBTCY4M1X8MkBPruBo+GqVTRTpNWPh16QTsXISieEOKd56hOvJF7fw83b+Oh7fPsjrj1PI1WEZKOrhgiccDy1O8PZq891i8yvJ7kq7NeewS+HuHMf/Xewf0kE+Ov+bHRqWxnjJq0CAu/T61/f3u/7F/dLESx0Kmc35XaO7QIAp3P8+uf446+OnKbRaLV7Wcr3btUbi4hNRieFjC/3RZqmCq5mFZE/jjmKRdntGXWjbgoAhrwoQ0h/vjcH2Dq4CADJ0qTIkhABaeymzXORGCCa5HmyyeAV4vJcG092F5gn+ZgOv/8C2/VM3Wp1mz8AAAAASUVORK5CYII=">
+<link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,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">
+<style>
+/* Layout: iOS-Stil – großer Titel, gruppierte Listen (inset grouped), auf dem iPad Ergebnis-Spalte rechts (sticky) */
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#f2f2f7; --surface:#ffffff; --fill:rgba(118,118,128,.12); --fill2:rgba(118,118,128,.08);
+  --fg:#000000; --muted:rgba(60,60,67,.6); --line:rgba(60,60,67,.29);
+  --accent:#007aff; --on-accent:#ffffff; --red:#ff3b30; --green:#34c759; --warn:#c93400;
+  --c1:#007aff; --c2:#ff9500; --c3:#34c759; --c4:#ff2d55; --c5:#5856d6; --c6:#30b0c7;
+  --body:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",system-ui,sans-serif;
+  --rounded:ui-rounded,"SF Pro Rounded",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#000000; --surface:#1c1c1e; --fill:rgba(118,118,128,.24); --fill2:rgba(118,118,128,.16);
+  --fg:#ffffff; --muted:rgba(235,235,245,.6); --line:rgba(84,84,88,.65);
+  --accent:#0a84ff; --red:#ff453a; --green:#30d158; --warn:#ff9f0a;
+  --c1:#0a84ff; --c2:#ff9f0a; --c3:#30d158; --c4:#ff375f; --c5:#5e5ce6; --c6:#40c8e0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#000000; --surface:#1c1c1e; --fill:rgba(118,118,128,.24); --fill2:rgba(118,118,128,.16);
+  --fg:#ffffff; --muted:rgba(235,235,245,.6); --line:rgba(84,84,88,.65);
+  --accent:#0a84ff; --red:#ff453a; --green:#30d158; --warn:#ff9f0a;
+  --c1:#0a84ff; --c2:#ff9f0a; --c3:#30d158; --c4:#ff375f; --c5:#5e5ce6; --c6:#40c8e0; color-scheme:dark}
+
+body{background:var(--bg);color:var(--fg);font:17px/1.35 var(--body);-webkit-font-smoothing:antialiased}
+.app{max-width:1080px;margin:0 auto;padding-block:12px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:700px){.app{padding-left:max(28px,env(safe-area-inset-left,0px));padding-right:max(28px,env(safe-area-inset-right,0px))}}
+.nav{padding:8px 0 20px}
+h1{font:700 34px/1.15 var(--body);letter-spacing:.01em;margin:0;text-wrap:balance}
+.sub{margin:6px 0 0;color:var(--muted);font-size:15px;max-width:62ch}
+.layout{display:grid;gap:28px;align-items:start}
+.col{display:flex;flex-direction:column;gap:26px;min-width:0}
+@media (min-width:880px){.layout{grid-template-columns:minmax(0,1fr) 340px}.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px)}}
+
+/* Gruppierte Listen */
+.sec{display:flex;flex-direction:column;gap:7px;min-width:0}
+.sec-h{font-size:13px;text-transform:uppercase;letter-spacing:.02em;color:var(--muted);padding:0 16px;display:flex;justify-content:space-between;gap:8px}
+.sec-h .tag{display:inline-flex;align-items:center;gap:6px}
+.sec-f{font-size:13px;color:var(--muted);padding:0 16px;margin:0}
+.group{background:var(--surface);border-radius:12px;overflow:hidden}
+.cell{position:relative;display:flex;align-items:center;gap:12px;min-height:44px;padding:8px 16px}
+.cell+.cell::before{content:"";position:absolute;top:0;right:0;left:var(--inset,16px);height:1px;background:var(--line);transform:scaleY(.5);transform-origin:top}
+.cell.sub{padding-left:52px;--inset:52px}
+.cell.sub+.cell.sub::before{left:52px}
+.grow{flex:1;min-width:0}
+.detail{color:var(--muted);font-size:15px;text-align:right;font-variant-numeric:tabular-nums}
+.dot{width:12px;height:12px;border-radius:50%;flex:none}
+.ico{width:29px;height:29px;border-radius:7px;display:grid;place-items:center;flex:none}
+.ico svg{width:18px;height:18px}
+
+/* Ausklappbarer Einrichtungsbereich */
+details.setup>summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}
+details.setup>summary::-webkit-details-marker{display:none}
+.chev{width:9px;height:9px;border-top:2.5px solid var(--muted);border-right:2.5px solid var(--muted);transform:rotate(45deg);transition:transform .25s;flex:none;opacity:.7;margin-right:2px}
+details[open] .chev{transform:rotate(135deg)}
+.setup-body{display:flex;flex-direction:column;gap:26px;margin-top:26px}
+
+/* Felder */
+input.plain{border:0;background:transparent;font:inherit;color:var(--fg);padding:6px 0;width:100%;min-width:0;outline:none;border-radius:0}
+input.plain.strong{font-weight:600}
+input.plain:focus{box-shadow:inset 0 -2px 0 var(--accent)}
+.pct{display:flex;align-items:center;gap:5px;color:var(--muted);flex:none}
+.pct input{width:68px;border:0;border-radius:8px;background:var(--fill);padding:6px 8px;text-align:right;font:inherit;font-variant-numeric:tabular-nums;color:var(--fg)}
+.del{width:44px;height:44px;margin:-8px -10px -8px -11px;border:0;background:none;padding:0;display:grid;place-items:center;flex:none;cursor:pointer}
+.del::before{content:"";width:22px;height:22px;border-radius:50%;background:linear-gradient(#fff,#fff) center/11px 2.5px no-repeat,var(--red)}
+.del:disabled{opacity:.3;cursor:default}
+.add{width:22px;height:22px;border-radius:50%;flex:none;background:linear-gradient(#fff,#fff) center/11px 2.5px no-repeat,linear-gradient(#fff,#fff) center/2.5px 11px no-repeat,var(--green)}
+button.linkcell{width:100%;border:0;background:none;font:inherit;color:var(--accent);text-align:left;cursor:pointer}
+button.linkcell.red{color:var(--red)}
+button.linkcell:active{background:var(--fill2)}
+.btn-fill{min-height:50px;border:0;border-radius:12px;background:var(--accent);color:var(--on-accent);font:600 17px var(--body);width:100%;cursor:pointer}
+.btn-fill:active{opacity:.75}
+.bar{height:6px;border-radius:3px;background:var(--fill);display:flex;gap:2px;overflow:hidden}
+.bar i{display:block;height:100%}
+.wsum{display:flex;justify-content:space-between;gap:10px;margin-top:10px;font-size:15px}
+.wsum b{font-variant-numeric:tabular-nums;font-weight:600}
+.wsum.bad{color:var(--warn)}
+.cell.block{display:block;padding:12px 16px}
+
+/* Punkte-Eingabe */
+.cell.task{display:block;padding:12px 16px 14px}
+.task-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.task-h strong{font-weight:600}
+.task-h .w{color:var(--muted);font-size:15px}
+.val{color:var(--accent);font-weight:600;font-variant-numeric:tabular-nums}
+.chips{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:6px}
+.chips button{height:44px;border:0;border-radius:10px;background:var(--fill);color:var(--fg);font:500 17px var(--rounded);font-variant-numeric:tabular-nums;cursor:pointer;transition:transform .12s,background-color .12s;-webkit-user-select:none;user-select:none;touch-action:manipulation}
+.chips button:active{transform:scale(.93)}
+.chips button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);font-weight:700}
+@media (max-width:380px){.chips{gap:4px}.chips button{font-size:15px}}
+
+/* Ergebnis: gerundete Gesamtnote in Punkten ist die Hauptinformation, darunter die Zusatzwerte */
+.hero{display:flex;align-items:center;gap:16px;padding:16px}
+.hero .badge{width:96px;height:96px;min-width:96px;padding:0;border-radius:24px;font:700 54px/1 var(--rounded)}
+.hero-t{font:700 30px/1.15 var(--rounded);margin-top:2px}
+.hero-s{color:var(--muted);font-size:15px;margin-top:3px}
+.hero+.stats{box-shadow:inset 0 .5px 0 var(--line)}
+.stats{display:grid;grid-template-columns:1fr 1fr}
+.stat{padding:14px 16px;min-width:0}
+.stat+.stat{box-shadow:inset .5px 0 0 var(--line)}
+.k{font-size:13px;color:var(--muted)}
+.big{font:700 24px/1.15 var(--rounded);font-variant-numeric:tabular-nums;margin-top:2px;white-space:nowrap}
+.big small{font:500 15px var(--body);color:var(--muted)}
+.grade{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;box-shadow:inset 0 .5px 0 var(--line)}
+.grade-t{font-weight:600;font-size:20px;margin-top:2px}
+.badge{min-width:60px;height:60px;padding:0 10px;border-radius:15px;display:grid;place-items:center;font:700 30px var(--rounded);color:#fff;background:var(--accent);flex:none;transition:background-color .2s}
+.calc{font:13px/1.55 var(--mono);white-space:pre;overflow-x:auto;padding:12px 16px}
+.empty{padding:16px;color:var(--muted);font-size:15px}
+
+button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.chev,.chips button,.badge{transition:none}}
+
+/* App-Basis: Safe-Area für Statusleiste/Home-Balken, kein Zoom beim Tippen in Felder */
+*,*::before,*::after{box-sizing:border-box}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{background:var(--bg);-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;min-height:100vh;-webkit-tap-highlight-color:transparent}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+input{font-size:max(16px,1em)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main class="app">
+  <header class="nav">
+    <h1>Klausur-Notenrechner</h1>
+    <p class="sub">Notenpunkte 0–15 pro Aufgabe antippen. Aufbau und Gewichtung legst du unter „Klausur einrichten“ fest.</p>
+  </header>
+
+  <div class="layout">
+    <div class="col">
+      <details class="setup" id="setup">
+        <summary class="group"><div class="cell">
+          <span class="ico" style="background:var(--c5)" aria-hidden="true"><svg viewBox="0 0 18 18" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><path d="M3 4.5h12M3 9h12M3 13.5h12"/><circle cx="6" cy="4.5" r="1.7" fill="#fff"/><circle cx="12" cy="9" r="1.7" fill="#fff"/><circle cx="8" cy="13.5" r="1.7" fill="#fff"/></svg></span>
+          <span class="grow">Klausur einrichten</span><span class="detail" id="sumMeta"></span><span class="chev" aria-hidden="true"></span>
+        </div></summary>
+        <div class="setup-body">
+          <p class="sec-f" style="margin-top:-12px">Aufgaben in einem Block teilen sich das Gewicht des Blocks zu gleichen Teilen. Eine Aufgabe, die allein zählt, bekommt einen eigenen Block.</p>
+          <div id="blocks" style="display:flex;flex-direction:column;gap:26px"></div>
+          <section class="sec">
+            <div class="sec-h"><span>Verteilung</span></div>
+            <div class="group"><div class="cell block"><div class="bar" id="bar" aria-hidden="true"></div><div class="wsum" id="wsum"></div></div></div>
+          </section>
+          <button class="btn-fill" type="button" id="addBlock">Block hinzufügen</button>
+          <div class="group">
+            <button class="cell linkcell" type="button" id="evenly">Gewichte gleich verteilen</button>
+            <button class="cell linkcell red" type="button" id="reset">Auf Standard zurücksetzen</button>
+          </div>
+        </div>
+      </details>
+
+      <div id="tasks" class="col"></div>
+    </div>
+
+    <aside class="col side">
+      <section class="sec">
+        <div class="sec-h"><span>Ergebnis</span></div>
+        <div class="group" aria-live="polite">
+          <div class="hero">
+            <div class="badge" id="badge">–</div>
+            <div><div class="k">Gesamtnote (gerundet)</div><div class="hero-t" id="gradeT">–</div><div class="hero-s" id="gradeS"></div></div>
+          </div>
+          <div class="stats">
+            <div class="stat"><div class="k">Gesamtpunkte exakt</div><div class="big" id="pts">–</div></div>
+            <div class="stat"><div class="k">Gesamtprozent</div><div class="big" id="pct">–</div></div>
+          </div>
+        </div>
+      </section>
+      <section class="sec">
+        <div class="sec-h"><span>Rechenweg</span></div>
+        <div class="group"><div class="calc" id="calc"></div></div>
+        <p class="sec-f">Blockpunkte = Durchschnitt der Aufgaben im Block. Gesamtpunkte = Summe aus Blockpunkte × Blockgewicht, gerundet auf ganze Notenpunkte (ab ,5 aufgerundet). Gesamtprozent = Gesamtpunkte / 15. Deine Einrichtung bleibt auf diesem Gerät gespeichert.</p>
+      </section>
+    </aside>
+  </div>
+</main>
+<script>
+const NOTE=["6","5−","5","5+","4−","4","4+","3−","3","3+","2−","2","2+","1−","1","1+"];
+const WORT=["ungenügend","mangelhaft","mangelhaft","mangelhaft","ausreichend","ausreichend","ausreichend","befriedigend","befriedigend","befriedigend","gut","gut","gut","sehr gut","sehr gut","sehr gut"];
+const col=i=>`var(--c${i%6+1})`;
+const gradeColor=r=>r>=10?"var(--green)":r>=7?"var(--accent)":r>=4?"var(--c2)":"var(--red)";
+const KEY="notenrechner-v2";
+const f=(n,d=1)=>n.toLocaleString("de-DE",{minimumFractionDigits:d,maximumFractionDigits:d});
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const newId=p=>p+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const def=()=>({blocks:[
+  {id:"b1",name:"Teil A",w:40,tasks:[{id:"t1",name:"Aufgabe 1",v:10},{id:"t2",name:"Aufgabe 2",v:11}]},
+  {id:"b2",name:"Teil B",w:60,tasks:[{id:"t3",name:"Aufgabe 3",v:12}]}]});
+let S=def();
+try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&Array.isArray(s.blocks)&&s.blocks.length)S=s}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const allTasks=()=>S.blocks.flatMap(b=>b.tasks);
+const totalW=()=>S.blocks.reduce((a,b)=>a+(+b.w||0),0);
+const footer=b=>{const n=b.tasks.length;return n?`${n} Aufgabe${n>1?"n":""} · je ${f((+b.w||0)/n)} % der Gesamtnote`:"Noch keine Aufgabe, der Block zählt nicht."};
+
+/* ---------- Einrichtung ---------- */
+function renderSetup(){
+  document.getElementById("blocks").innerHTML=S.blocks.map((b,bi)=>`
+  <section class="sec">
+    <div class="group">
+      <div class="cell">
+        <button class="del" type="button" data-act="delBlock" data-b="${b.id}" aria-label="Block ${esc(b.name)} entfernen" ${S.blocks.length<2?"disabled":""}></button>
+        <span class="dot" style="background:${col(bi)}"></span>
+        <input class="plain strong" type="text" id="bn-${b.id}" data-b="${b.id}" data-f="name" value="${esc(b.name)}" aria-label="Name des Blocks">
+        <label class="pct"><input type="number" id="bw-${b.id}" data-b="${b.id}" data-f="w" min="0" max="100" step="1" inputmode="decimal" value="${b.w}" aria-label="Gewicht in Prozent">%</label>
+      </div>
+      ${b.tasks.map(t=>`<div class="cell sub">
+        <button class="del" type="button" data-act="delTask" data-b="${b.id}" data-t="${t.id}" aria-label="${esc(t.name)} entfernen"></button>
+        <input class="plain" type="text" id="tn-${t.id}" data-t="${t.id}" value="${esc(t.name)}" aria-label="Name der Aufgabe">
+      </div>`).join("")}
+      <button class="cell sub linkcell" type="button" data-act="addTask" data-b="${b.id}"><span class="add" aria-hidden="true"></span>Aufgabe hinzufügen</button>
+    </div>
+    <p class="sec-f">${footer(b)}</p>
+  </section>`).join("");
+  renderSummary();
+}
+function renderSummary(){
+  const tw=totalW(), n=allTasks().length, ok=Math.abs(tw-100)<.01;
+  document.getElementById("sumMeta").textContent=`${n} Aufgabe${n===1?"":"n"}${ok?"":" · ⚠︎"}`;
+  document.getElementById("bar").innerHTML=S.blocks.map((b,bi)=>`<i style="width:${(+b.w||0)/Math.max(tw,100)*100}%;background:${col(bi)}"></i>`).join("");
+  const ws=document.getElementById("wsum");ws.className="wsum"+(ok?"":" bad");
+  ws.innerHTML=ok?`<span>Gewichte zusammen</span><b>100 %</b>`
+    :`<span>Ergibt ${f(tw,0)} % statt 100 %. Gerechnet wird anteilig.</span><b>${f(tw,0)} %</b>`;
+}
+const blocksEl=document.getElementById("blocks");
+blocksEl.addEventListener("input",e=>{
+  const el=e.target;
+  if(el.dataset.t){const t=allTasks().find(x=>x.id===el.dataset.t);if(t)t.name=el.value}
+  else if(el.dataset.b){const b=S.blocks.find(x=>x.id===el.dataset.b);if(!b)return;
+    if(el.dataset.f==="w"){b.w=Math.max(0,parseFloat(String(el.value).replace(",","."))||0);
+      el.closest(".sec").querySelector(".sec-f").textContent=footer(b);renderSummary()}
+    else b.name=el.value}
+  save();renderTasks();calc();
+});
+blocksEl.addEventListener("click",e=>{
+  const btn=e.target.closest("button[data-act]");if(!btn)return;
+  const b=S.blocks.find(x=>x.id===btn.dataset.b);if(!b)return;
+  let focusId=null;
+  if(btn.dataset.act==="addTask"){const t={id:newId("t"),name:`Aufgabe ${allTasks().length+1}`,v:8};b.tasks.push(t);focusId="tn-"+t.id}
+  if(btn.dataset.act==="delTask")b.tasks=b.tasks.filter(t=>t.id!==btn.dataset.t);
+  if(btn.dataset.act==="delBlock"&&S.blocks.length>1)S.blocks=S.blocks.filter(x=>x!==b);
+  save();renderAll();
+  if(focusId){const i=document.getElementById(focusId);if(i){i.focus();i.select()}}
+});
+document.getElementById("addBlock").addEventListener("click",()=>{
+  const id=newId("b");
+  S.blocks.push({id,name:`Teil ${String.fromCharCode(65+S.blocks.length)}`,w:Math.max(0,100-totalW()),tasks:[{id:newId("t"),name:`Aufgabe ${allTasks().length+1}`,v:8}]});
+  save();renderAll();const i=document.getElementById("bw-"+id);if(i){i.focus();i.select()}
+});
+document.getElementById("evenly").addEventListener("click",()=>{
+  const n=S.blocks.length, base=Math.floor(1000/n)/10;
+  S.blocks.forEach((b,i)=>b.w=i===n-1?Math.round((100-base*(n-1))*10)/10:base);save();renderAll();
+});
+let armed=null;const rb=document.getElementById("reset");
+rb.addEventListener("click",()=>{
+  if(!armed){rb.textContent="Zum Bestätigen erneut tippen";armed=setTimeout(()=>{armed=null;rb.textContent="Auf Standard zurücksetzen"},3000);return}
+  clearTimeout(armed);armed=null;rb.textContent="Auf Standard zurücksetzen";S=def();save();renderAll();
+});
+
+/* ---------- Eingabe ---------- */
+function renderTasks(){
+  const tw=totalW()||1;
+  document.getElementById("tasks").innerHTML=S.blocks.filter(b=>b.tasks.length).map(b=>{
+    const bi=S.blocks.indexOf(b), bw=(+b.w||0)/tw*100, share=bw/b.tasks.length;
+    return `<section class="sec">
+      <div class="sec-h"><span class="tag"><span class="dot" style="background:${col(bi)};width:8px;height:8px"></span>${esc(b.name)}</span><span>${f(bw,0)} % der Note</span></div>
+      <div class="group">${b.tasks.map(t=>`<div class="cell task" aria-label="${esc(t.name)}">
+        <div class="task-h"><div><strong>${esc(t.name)}</strong> <span class="w">· ${f(share)} %</span></div><span class="val">${t.v} P · ${NOTE[t.v]}</span></div>
+        <div class="chips" role="group" aria-label="Notenpunkte ${esc(t.name)}">${Array.from({length:16},(_,p)=>`<button type="button" id="c-${t.id}-${p}" data-t="${t.id}" data-p="${p}" aria-pressed="${p===t.v}" aria-label="${p} Punkte, Note ${NOTE[p]}">${p}</button>`).join("")}</div>
+      </div>`).join("")}</div>
+    </section>`}).join("") || `<div class="group"><div class="empty">Noch keine Aufgaben. Öffne „Klausur einrichten“ und füge welche hinzu.</div></div>`;
+}
+document.getElementById("tasks").addEventListener("click",e=>{
+  const b=e.target.closest("button[data-p]");if(!b)return;
+  const t=allTasks().find(x=>x.id===b.dataset.t);if(!t)return;
+  t.v=+b.dataset.p;save();
+  const cell=b.closest(".task");cell.querySelectorAll("button[data-p]").forEach(x=>x.setAttribute("aria-pressed",+x.dataset.p===t.v));
+  cell.querySelector(".val").textContent=`${t.v} P · ${NOTE[t.v]}`;calc();
+});
+
+/* ---------- Berechnung ---------- */
+function calc(){
+  const used=S.blocks.filter(b=>b.tasks.length&&(+b.w||0)>0), tw=used.reduce((a,b)=>a+(+b.w),0);
+  const $=id=>document.getElementById(id);
+  if(!tw){$("pct").textContent=$("pts").textContent=$("gradeT").textContent=$("badge").textContent="–";$("gradeS").textContent="";$("calc").textContent="Keine gewichteten Aufgaben vorhanden.";return}
+  let exact=0;const lines=[];
+  used.forEach(b=>{
+    const avg=b.tasks.reduce((a,t)=>a+t.v,0)/b.tasks.length, w=(+b.w)/tw, part=avg*w;exact+=part;
+    lines.push(`${b.name}:`,
+      b.tasks.length>1?`  Ø (${b.tasks.map(t=>t.v).join(" + ")}) / ${b.tasks.length} = ${f(avg,2)}`:`  ${b.tasks[0].name}: ${avg}`,
+      `  × ${f(w*100)} % = ${f(part,2)}`);
+  });
+  const r=Math.min(15,Math.floor(exact+.5+1e-9)), pct=exact/15*100;
+  $("pct").innerHTML=f(pct)+"<small> %</small>";
+  $("pts").innerHTML=f(exact,2)+"<small> / 15</small>";
+  $("gradeT").textContent=`${r} Punkte`;
+  $("gradeS").textContent=`Note ${NOTE[r]} · ${WORT[r]}`;
+  const bd=$("badge");bd.textContent=r;bd.style.background=gradeColor(r);
+  $("calc").textContent=lines.join("\n")+`\n────────────────────────\nSumme   = ${f(exact,2)} → ${r} Punkte\nProzent = ${f(exact,2)} / 15 = ${f(pct)} %`+
+    (Math.abs(totalW()-100)>.01?`\n(Gewichte auf 100 % hochgerechnet)`:"");
+}
+function renderAll(){renderSetup();renderTasks();calc()}
+renderAll();
+</script>
+</body>
+</html>

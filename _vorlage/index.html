@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TOOL-NAME</title>
+<!-- iPad/iPhone: als Vollbild-App vom Home-Bildschirm starten (ohne Adressleiste) -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="KURZNAME">
+<meta name="application-name" content="KURZNAME">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<!-- Icons: Favicon (Browser-Tab) und Home-Bildschirm-Icon 180 × 180, direkt eingebettet -->
+<link rel="icon" type="image/png" sizes="32x32" href="ICON32">
+<link rel="apple-touch-icon" sizes="180x180" href="ICON180">
+<style>
+/* === Design-System (iOS-Stil) – NICHT ändern, nur ergänzen. Identisch in allen Tools. === */
+/* Layout: iOS-Stil – großer Titel, gruppierte Listen (inset grouped), auf dem iPad Ergebnis-Spalte rechts (sticky) */
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#f2f2f7; --surface:#ffffff; --fill:rgba(118,118,128,.12); --fill2:rgba(118,118,128,.08);
+  --fg:#000000; --muted:rgba(60,60,67,.6); --line:rgba(60,60,67,.29);
+  --accent:#007aff; --on-accent:#ffffff; --red:#ff3b30; --green:#34c759; --warn:#c93400;
+  --c1:#007aff; --c2:#ff9500; --c3:#34c759; --c4:#ff2d55; --c5:#5856d6; --c6:#30b0c7;
+  --body:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",system-ui,sans-serif;
+  --rounded:ui-rounded,"SF Pro Rounded",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#000000; --surface:#1c1c1e; --fill:rgba(118,118,128,.24); --fill2:rgba(118,118,128,.16);
+  --fg:#ffffff; --muted:rgba(235,235,245,.6); --line:rgba(84,84,88,.65);
+  --accent:#0a84ff; --red:#ff453a; --green:#30d158; --warn:#ff9f0a;
+  --c1:#0a84ff; --c2:#ff9f0a; --c3:#30d158; --c4:#ff375f; --c5:#5e5ce6; --c6:#40c8e0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#000000; --surface:#1c1c1e; --fill:rgba(118,118,128,.24); --fill2:rgba(118,118,128,.16);
+  --fg:#ffffff; --muted:rgba(235,235,245,.6); --line:rgba(84,84,88,.65);
+  --accent:#0a84ff; --red:#ff453a; --green:#30d158; --warn:#ff9f0a;
+  --c1:#0a84ff; --c2:#ff9f0a; --c3:#30d158; --c4:#ff375f; --c5:#5e5ce6; --c6:#40c8e0; color-scheme:dark}
+
+body{background:var(--bg);color:var(--fg);font:17px/1.35 var(--body);-webkit-font-smoothing:antialiased}
+.app{max-width:1080px;margin:0 auto;padding-block:12px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:700px){.app{padding-left:max(28px,env(safe-area-inset-left,0px));padding-right:max(28px,env(safe-area-inset-right,0px))}}
+.nav{padding:8px 0 20px}
+h1{font:700 34px/1.15 var(--body);letter-spacing:.01em;margin:0;text-wrap:balance}
+.sub{margin:6px 0 0;color:var(--muted);font-size:15px;max-width:62ch}
+.layout{display:grid;gap:28px;align-items:start}
+.col{display:flex;flex-direction:column;gap:26px;min-width:0}
+@media (min-width:880px){.layout{grid-template-columns:minmax(0,1fr) 340px}.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px)}}
+
+/* Gruppierte Listen */
+.sec{display:flex;flex-direction:column;gap:7px;min-width:0}
+.sec-h{font-size:13px;text-transform:uppercase;letter-spacing:.02em;color:var(--muted);padding:0 16px;display:flex;justify-content:space-between;gap:8px}
+.sec-h .tag{display:inline-flex;align-items:center;gap:6px}
+.sec-f{font-size:13px;color:var(--muted);padding:0 16px;margin:0}
+.group{background:var(--surface);border-radius:12px;overflow:hidden}
+.cell{position:relative;display:flex;align-items:center;gap:12px;min-height:44px;padding:8px 16px}
+.cell+.cell::before{content:"";position:absolute;top:0;right:0;left:var(--inset,16px);height:1px;background:var(--line);transform:scaleY(.5);transform-origin:top}
+.cell.sub{padding-left:52px;--inset:52px}
+.cell.sub+.cell.sub::before{left:52px}
+.grow{flex:1;min-width:0}
+.detail{color:var(--muted);font-size:15px;text-align:right;font-variant-numeric:tabular-nums}
+.dot{width:12px;height:12px;border-radius:50%;flex:none}
+.ico{width:29px;height:29px;border-radius:7px;display:grid;place-items:center;flex:none}
+.ico svg{width:18px;height:18px}
+
+/* Ausklappbarer Einrichtungsbereich */
+details.setup>summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}
+details.setup>summary::-webkit-details-marker{display:none}
+.chev{width:9px;height:9px;border-top:2.5px solid var(--muted);border-right:2.5px solid var(--muted);transform:rotate(45deg);transition:transform .25s;flex:none;opacity:.7;margin-right:2px}
+details[open] .chev{transform:rotate(135deg)}
+.setup-body{display:flex;flex-direction:column;gap:26px;margin-top:26px}
+
+/* Felder */
+input.plain{border:0;background:transparent;font:inherit;color:var(--fg);padding:6px 0;width:100%;min-width:0;outline:none;border-radius:0}
+input.plain.strong{font-weight:600}
+input.plain:focus{box-shadow:inset 0 -2px 0 var(--accent)}
+.pct{display:flex;align-items:center;gap:5px;color:var(--muted);flex:none}
+.pct input{width:68px;border:0;border-radius:8px;background:var(--fill);padding:6px 8px;text-align:right;font:inherit;font-variant-numeric:tabular-nums;color:var(--fg)}
+.del{width:44px;height:44px;margin:-8px -10px -8px -11px;border:0;background:none;padding:0;display:grid;place-items:center;flex:none;cursor:pointer}
+.del::before{content:"";width:22px;height:22px;border-radius:50%;background:linear-gradient(#fff,#fff) center/11px 2.5px no-repeat,var(--red)}
+.del:disabled{opacity:.3;cursor:default}
+.add{width:22px;height:22px;border-radius:50%;flex:none;background:linear-gradient(#fff,#fff) center/11px 2.5px no-repeat,linear-gradient(#fff,#fff) center/2.5px 11px no-repeat,var(--green)}
+button.linkcell{width:100%;border:0;background:none;font:inherit;color:var(--accent);text-align:left;cursor:pointer}
+button.linkcell.red{color:var(--red)}
+button.linkcell:active{background:var(--fill2)}
+.btn-fill{min-height:50px;border:0;border-radius:12px;background:var(--accent);color:var(--on-accent);font:600 17px var(--body);width:100%;cursor:pointer}
+.btn-fill:active{opacity:.75}
+.bar{height:6px;border-radius:3px;background:var(--fill);display:flex;gap:2px;overflow:hidden}
+.bar i{display:block;height:100%}
+.wsum{display:flex;justify-content:space-between;gap:10px;margin-top:10px;font-size:15px}
+.wsum b{font-variant-numeric:tabular-nums;font-weight:600}
+.wsum.bad{color:var(--warn)}
+.cell.block{display:block;padding:12px 16px}
+
+/* Punkte-Eingabe */
+.cell.task{display:block;padding:12px 16px 14px}
+.task-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.task-h strong{font-weight:600}
+.task-h .w{color:var(--muted);font-size:15px}
+.val{color:var(--accent);font-weight:600;font-variant-numeric:tabular-nums}
+.chips{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:6px}
+.chips button{height:44px;border:0;border-radius:10px;background:var(--fill);color:var(--fg);font:500 17px var(--rounded);font-variant-numeric:tabular-nums;cursor:pointer;transition:transform .12s,background-color .12s;-webkit-user-select:none;user-select:none;touch-action:manipulation}
+.chips button:active{transform:scale(.93)}
+.chips button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);font-weight:700}
+@media (max-width:380px){.chips{gap:4px}.chips button{font-size:15px}}
+
+/* Ergebnis: gerundete Gesamtnote in Punkten ist die Hauptinformation, darunter die Zusatzwerte */
+.hero{display:flex;align-items:center;gap:16px;padding:16px}
+.hero .badge{width:96px;height:96px;min-width:96px;padding:0;border-radius:24px;font:700 54px/1 var(--rounded)}
+.hero-t{font:700 30px/1.15 var(--rounded);margin-top:2px}
+.hero-s{color:var(--muted);font-size:15px;margin-top:3px}
+.hero+.stats{box-shadow:inset 0 .5px 0 var(--line)}
+.stats{display:grid;grid-template-columns:1fr 1fr}
+.stat{padding:14px 16px;min-width:0}
+.stat+.stat{box-shadow:inset .5px 0 0 var(--line)}
+.k{font-size:13px;color:var(--muted)}
+.big{font:700 24px/1.15 var(--rounded);font-variant-numeric:tabular-nums;margin-top:2px;white-space:nowrap}
+.big small{font:500 15px var(--body);color:var(--muted)}
+.grade{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;box-shadow:inset 0 .5px 0 var(--line)}
+.grade-t{font-weight:600;font-size:20px;margin-top:2px}
+.badge{min-width:60px;height:60px;padding:0 10px;border-radius:15px;display:grid;place-items:center;font:700 30px var(--rounded);color:#fff;background:var(--accent);flex:none;transition:background-color .2s}
+.calc{font:13px/1.55 var(--mono);white-space:pre;overflow-x:auto;padding:12px 16px}
+.empty{padding:16px;color:var(--muted);font-size:15px}
+
+button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.chev,.chips button,.badge{transition:none}}
+
+/* App-Basis: Safe-Area für Statusleiste/Home-Balken, kein Zoom beim Tippen in Felder */
+*,*::before,*::after{box-sizing:border-box}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{background:var(--bg);-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;min-height:100vh;-webkit-tap-highlight-color:transparent}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+input{font-size:max(16px,1em)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<!-- VORLAGE für neue Tools. Kopieren nach <neuer-ordner>/index.html, dann:
+     1. TOOL-NAME (Titel, max. ~4 Wörter) und KURZNAME (Name unter dem Home-Icon, max. 12 Zeichen) ersetzen
+     2. Icon zeichnen (_werkzeuge/icons_zeichnen.py) und einbetten (_werkzeuge/icon_einbetten.py) – ersetzt ICON32/ICON180
+     3. KEY für localStorage eindeutig benennen: "<ordnername>-v1"
+     4. Tool in ../index.html (Übersicht) und in CLAUDE.md (Abschnitt Tools) eintragen -->
+<main class="app">
+  <header class="nav">
+    <h1>TOOL-NAME</h1>
+    <p class="sub">Ein Satz, was das Tool macht und wie man es bedient.</p>
+  </header>
+  <div class="layout">
+    <div class="col">
+      <!-- Optional: ausklappbare Einstellungen -->
+      <details class="setup" id="setup">
+        <summary class="group"><div class="cell">
+          <span class="ico" style="background:var(--c5)" aria-hidden="true"><svg viewBox="0 0 18 18" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><path d="M3 4.5h12M3 9h12M3 13.5h12"/><circle cx="6" cy="4.5" r="1.7" fill="#fff"/><circle cx="12" cy="9" r="1.7" fill="#fff"/><circle cx="8" cy="13.5" r="1.7" fill="#fff"/></svg></span>
+          <span class="grow">Einstellungen</span><span class="detail" id="sumMeta"></span><span class="chev" aria-hidden="true"></span>
+        </div></summary>
+        <div class="setup-body">
+          <section class="sec">
+            <div class="group">
+              <div class="cell"><button class="del" type="button" aria-label="Eintrag entfernen"></button><input class="plain" type="text" id="beispiel" value="Beispiel-Eintrag" aria-label="Name"><label class="pct"><input type="number" id="beispiel-w" value="50" inputmode="decimal" aria-label="Prozent">%</label></div>
+              <button class="cell linkcell" type="button"><span class="add" aria-hidden="true"></span>Eintrag hinzufügen</button>
+            </div>
+            <p class="sec-f">Fußnote unter einer Gruppe: kurze Erklärung.</p>
+          </section>
+        </div>
+      </details>
+
+      <section class="sec">
+        <div class="sec-h"><span>Eingabe</span></div>
+        <div class="group">
+          <div class="cell task">
+            <div class="task-h"><div><strong>Beispiel</strong> <span class="w">· 50 %</span></div><span class="val">10 P · 2−</span></div>
+            <div class="chips" role="group" aria-label="Notenpunkte">
+              <button type="button" aria-pressed="false">0</button><button type="button" aria-pressed="true">10</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <aside class="col side">
+      <section class="sec">
+        <div class="sec-h"><span>Ergebnis</span></div>
+        <div class="group" aria-live="polite">
+          <!-- Hauptergebnis zuerst und groß (ausdrücklicher Wunsch), Zusatzwerte klein darunter -->
+          <div class="hero">
+            <div class="badge" style="background:var(--green)">11</div>
+            <div><div class="k">Gesamtnote (gerundet)</div><div class="hero-t">11 Punkte</div><div class="hero-s">Note 2 · gut</div></div>
+          </div>
+          <div class="stats">
+            <div class="stat"><div class="k">Gesamtpunkte exakt</div><div class="big">11,40<small> / 15</small></div></div>
+            <div class="stat"><div class="k">Gesamtprozent</div><div class="big">76,0<small> %</small></div></div>
+          </div>
+        </div>
+      </section>
+    </aside>
+  </div>
+</main>
+<script>
+const KEY="ORDNERNAME-v1";               // eindeutig pro Tool!
+let S={};
+try{const s=JSON.parse(localStorage.getItem(KEY));if(s)S=s}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+</script>
+</body>
+</html>

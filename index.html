@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Meine Tools</title>
+<!-- iPad/iPhone: als Vollbild-App vom Home-Bildschirm starten (ohne Adressleiste) -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Tools">
+<meta name="application-name" content="Tools">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<!-- Icons: Favicon (Browser-Tab) und Home-Bildschirm-Icon 180 × 180, direkt eingebettet -->
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAERklEQVR42u1WTWhcVRT+zn33vZm8N7WTSZtoEkgruGhpUyh1YRuFSq0bayaxxJZuROnGfTfSnetuCnahuKkaMJRo/VkUrGhdSEQo6kqFQqmJYibVTiaZN+/dc46LFyfTN6EpQhHBw1u8e8+99zs/9zv30Llz5/EgxarqgwUQkf84wL8TIiIioruxCdBsplubDTe01Ypo1+lwziVJaq3XnmQWzzO+7wNIkiQbdmjZWt9arxvCqkrO9jR1YRhWq8fKvRVVgEDQVty8evWLhYXfiDAw0H/kyOGwp0jQbM/tP+pXrnzWaDSszcc8HyJjTLMZvzA5vnd0T86WSqVy/vwFETl+fKK/f3unamgYnuddvDgdRV7uwDwgsxhD5UpFROZu4a05EsGzu/TFvYhKJT/w2fFDWyIRwY1ZuvEJyOjul/DIWKWy1Rhi5k2STEQinDo2xrwxp+99SfDx9QJO7iOoMrMIs6gxRr99nX75HgxwnYaeYpeKcHeq80kmgohCFUAqgAV8rC0hqKiIEgEAlGEBAsQBIIWIinQB5JIMkKoaY1S1ukt//BWiqI6qroFCNbuuqo+dgMwABo9OqiqMUVVV2cQDY5AkadJqEtHJfXRyX5sEEOY4jpnZsRARHTiLA2fbG+OWS5I0CILcgd7Bg09qhwAQ4fn5+Z07dxjPsmPHLknSxnJjdvbD+fkFEV1cXBwZGSEIs7g0TdOkVrs9M3NpeblhrZdFqS105sxr3TSO4xhAEATtSedcxg8AzeaqtdZaC6wlJ0kSVfT0FLvJvCGT1RhDRJ63zmRViGiWMGO8TNbj4FkREZH7YnIcJ8PDg6dOnSj3lomytEsrbl2+/On1698BGB3dMzHxfLFYNIay5Nfrf05Pz9y8eatQCHJOmOxutT9VTZJkfPy54eGhUhRFYRSFYSkq9fX1TU1N+r41xkxNTW7b1lcqRWEYRlFYKoWDg4PV6rE0TVU1d2CeaKpkDBWKBVW9uvTN2/OzAj3a98TLQ1VvLe7OWl9VP/5o6atrd4hovFo5eGhroVA0xjDL5jwQERYmos+X5ubqPxRNIZX0leEJAhxzZhARXbtW//mnOE21f8A/NFZmVhHenAcZk7Mpj0yqzqghEP6mV5urREhTdU7NWtnWjZncXYtU1fesiEz0P51o6lQO9z4uImQoAyEyIjJerQwM+MbgmaNlEbHWqKrIBiHKeUCtVqv2e23HyMj+8u795d1t1XK9sbKywiz1+p0oenhsrDw2Vm5ra7WlOI6DINjEA1UNguCdd6dZpH9gu0AJgGJ1ZfXSpQ/S1AG4cOHNqanJKNrSjmqtVpueft/3fWbOW3z69Kt3A8AYarWSOI5zT6a1Ngx7AKyuNp1znU+mc1wsFguFYL3W3oPJzOr7fhAEnc4RERGYBchKAjotzapvps2R+V59Uactnauy/06tc/JP+qJ7d0z32U/93zpuKn8BoHQP5SRn/DMAAAAASUVORK5CYII=">
+<link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,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">
+<style>
+/* Layout: iOS-Stil – großer Titel, gruppierte Listen (inset grouped), auf dem iPad Ergebnis-Spalte rechts (sticky) */
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#f2f2f7; --surface:#ffffff; --fill:rgba(118,118,128,.12); --fill2:rgba(118,118,128,.08);
+  --fg:#000000; --muted:rgba(60,60,67,.6); --line:rgba(60,60,67,.29);
+  --accent:#007aff; --on-accent:#ffffff; --red:#ff3b30; --green:#34c759; --warn:#c93400;
+  --c1:#007aff; --c2:#ff9500; --c3:#34c759; --c4:#ff2d55; --c5:#5856d6; --c6:#30b0c7;
+  --body:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",system-ui,sans-serif;
+  --rounded:ui-rounded,"SF Pro Rounded",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#000000; --surface:#1c1c1e; --fill:rgba(118,118,128,.24); --fill2:rgba(118,118,128,.16);
+  --fg:#ffffff; --muted:rgba(235,235,245,.6); --line:rgba(84,84,88,.65);
+  --accent:#0a84ff; --red:#ff453a; --green:#30d158; --warn:#ff9f0a;
+  --c1:#0a84ff; --c2:#ff9f0a; --c3:#30d158; --c4:#ff375f; --c5:#5e5ce6; --c6:#40c8e0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#000000; --surface:#1c1c1e; --fill:rgba(118,118,128,.24); --fill2:rgba(118,118,128,.16);
+  --fg:#ffffff; --muted:rgba(235,235,245,.6); --line:rgba(84,84,88,.65);
+  --accent:#0a84ff; --red:#ff453a; --green:#30d158; --warn:#ff9f0a;
+  --c1:#0a84ff; --c2:#ff9f0a; --c3:#30d158; --c4:#ff375f; --c5:#5e5ce6; --c6:#40c8e0; color-scheme:dark}
+
+body{background:var(--bg);color:var(--fg);font:17px/1.35 var(--body);-webkit-font-smoothing:antialiased}
+.app{max-width:1080px;margin:0 auto;padding-block:12px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:700px){.app{padding-left:max(28px,env(safe-area-inset-left,0px));padding-right:max(28px,env(safe-area-inset-right,0px))}}
+.nav{padding:8px 0 20px}
+h1{font:700 34px/1.15 var(--body);letter-spacing:.01em;margin:0;text-wrap:balance}
+.sub{margin:6px 0 0;color:var(--muted);font-size:15px;max-width:62ch}
+.layout{display:grid;gap:28px;align-items:start}
+.col{display:flex;flex-direction:column;gap:26px;min-width:0}
+@media (min-width:880px){.layout{grid-template-columns:minmax(0,1fr) 340px}.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px)}}
+
+/* Gruppierte Listen */
+.sec{display:flex;flex-direction:column;gap:7px;min-width:0}
+.sec-h{font-size:13px;text-transform:uppercase;letter-spacing:.02em;color:var(--muted);padding:0 16px;display:flex;justify-content:space-between;gap:8px}
+.sec-h .tag{display:inline-flex;align-items:center;gap:6px}
+.sec-f{font-size:13px;color:var(--muted);padding:0 16px;margin:0}
+.group{background:var(--surface);border-radius:12px;overflow:hidden}
+.cell{position:relative;display:flex;align-items:center;gap:12px;min-height:44px;padding:8px 16px}
+.cell+.cell::before{content:"";position:absolute;top:0;right:0;left:var(--inset,16px);height:1px;background:var(--line);transform:scaleY(.5);transform-origin:top}
+.cell.sub{padding-left:52px;--inset:52px}
+.cell.sub+.cell.sub::before{left:52px}
+.grow{flex:1;min-width:0}
+.detail{color:var(--muted);font-size:15px;text-align:right;font-variant-numeric:tabular-nums}
+.dot{width:12px;height:12px;border-radius:50%;flex:none}
+.ico{width:29px;height:29px;border-radius:7px;display:grid;place-items:center;flex:none}
+.ico svg{width:18px;height:18px}
+
+/* Ausklappbarer Einrichtungsbereich */
+details.setup>summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}
+details.setup>summary::-webkit-details-marker{display:none}
+.chev{width:9px;height:9px;border-top:2.5px solid var(--muted);border-right:2.5px solid var(--muted);transform:rotate(45deg);transition:transform .25s;flex:none;opacity:.7;margin-right:2px}
+details[open] .chev{transform:rotate(135deg)}
+.setup-body{display:flex;flex-direction:column;gap:26px;margin-top:26px}
+
+/* Felder */
+input.plain{border:0;background:transparent;font:inherit;color:var(--fg);padding:6px 0;width:100%;min-width:0;outline:none;border-radius:0}
+input.plain.strong{font-weight:600}
+input.plain:focus{box-shadow:inset 0 -2px 0 var(--accent)}
+.pct{display:flex;align-items:center;gap:5px;color:var(--muted);flex:none}
+.pct input{width:68px;border:0;border-radius:8px;background:var(--fill);padding:6px 8px;text-align:right;font:inherit;font-variant-numeric:tabular-nums;color:var(--fg)}
+.del{width:44px;height:44px;margin:-8px -10px -8px -11px;border:0;background:none;padding:0;display:grid;place-items:center;flex:none;cursor:pointer}
+.del::before{content:"";width:22px;height:22px;border-radius:50%;background:linear-gradient(#fff,#fff) center/11px 2.5px no-repeat,var(--red)}
+.del:disabled{opacity:.3;cursor:default}
+.add{width:22px;height:22px;border-radius:50%;flex:none;background:linear-gradient(#fff,#fff) center/11px 2.5px no-repeat,linear-gradient(#fff,#fff) center/2.5px 11px no-repeat,var(--green)}
+button.linkcell{width:100%;border:0;background:none;font:inherit;color:var(--accent);text-align:left;cursor:pointer}
+button.linkcell.red{color:var(--red)}
+button.linkcell:active{background:var(--fill2)}
+.btn-fill{min-height:50px;border:0;border-radius:12px;background:var(--accent);color:var(--on-accent);font:600 17px var(--body);width:100%;cursor:pointer}
+.btn-fill:active{opacity:.75}
+.bar{height:6px;border-radius:3px;background:var(--fill);display:flex;gap:2px;overflow:hidden}
+.bar i{display:block;height:100%}
+.wsum{display:flex;justify-content:space-between;gap:10px;margin-top:10px;font-size:15px}
+.wsum b{font-variant-numeric:tabular-nums;font-weight:600}
+.wsum.bad{color:var(--warn)}
+.cell.block{display:block;padding:12px 16px}
+
+/* Punkte-Eingabe */
+.cell.task{display:block;padding:12px 16px 14px}
+.task-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.task-h strong{font-weight:600}
+.task-h .w{color:var(--muted);font-size:15px}
+.val{color:var(--accent);font-weight:600;font-variant-numeric:tabular-nums}
+.chips{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:6px}
+.chips button{height:44px;border:0;border-radius:10px;background:var(--fill);color:var(--fg);font:500 17px var(--rounded);font-variant-numeric:tabular-nums;cursor:pointer;transition:transform .12s,background-color .12s;-webkit-user-select:none;user-select:none;touch-action:manipulation}
+.chips button:active{transform:scale(.93)}
+.chips button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);font-weight:700}
+@media (max-width:380px){.chips{gap:4px}.chips button{font-size:15px}}
+
+/* Ergebnis: gerundete Gesamtnote in Punkten ist die Hauptinformation, darunter die Zusatzwerte */
+.hero{display:flex;align-items:center;gap:16px;padding:16px}
+.hero .badge{width:96px;height:96px;min-width:96px;padding:0;border-radius:24px;font:700 54px/1 var(--rounded)}
+.hero-t{font:700 30px/1.15 var(--rounded);margin-top:2px}
+.hero-s{color:var(--muted);font-size:15px;margin-top:3px}
+.hero+.stats{box-shadow:inset 0 .5px 0 var(--line)}
+.stats{display:grid;grid-template-columns:1fr 1fr}
+.stat{padding:14px 16px;min-width:0}
+.stat+.stat{box-shadow:inset .5px 0 0 var(--line)}
+.k{font-size:13px;color:var(--muted)}
+.big{font:700 24px/1.15 var(--rounded);font-variant-numeric:tabular-nums;margin-top:2px;white-space:nowrap}
+.big small{font:500 15px var(--body);color:var(--muted)}
+.grade{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;box-shadow:inset 0 .5px 0 var(--line)}
+.grade-t{font-weight:600;font-size:20px;margin-top:2px}
+.badge{min-width:60px;height:60px;padding:0 10px;border-radius:15px;display:grid;place-items:center;font:700 30px var(--rounded);color:#fff;background:var(--accent);flex:none;transition:background-color .2s}
+.calc{font:13px/1.55 var(--mono);white-space:pre;overflow-x:auto;padding:12px 16px}
+.empty{padding:16px;color:var(--muted);font-size:15px}
+
+button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.chev,.chips button,.badge{transition:none}}
+
+/* App-Basis: Safe-Area für Statusleiste/Home-Balken, kein Zoom beim Tippen in Felder */
+*,*::before,*::after{box-sizing:border-box}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{background:var(--bg);-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;min-height:100vh;-webkit-tap-highlight-color:transparent}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+input{font-size:max(16px,1em)}
+[hidden]{display:none!important}
+
+/* Übersichtsseite */
+.toolrow{color:var(--fg);text-decoration:none;--inset:76px;padding-block:10px}
+.toolrow:active{background:var(--fill2)}
+.appicon{width:48px;height:48px;border-radius:11px;flex:none;box-shadow:0 0 0 .5px var(--line)}
+.toolrow strong{display:block;font-weight:600}
+.desc{display:block;color:var(--muted);font-size:15px}
+</style>
+</head>
+<body>
+<main class="app" style="max-width:720px">
+  <header class="nav">
+    <h1>Meine Tools</h1>
+    <p class="sub">Tippe ein Tool an. Auf dem iPad jedes Tool einzeln über Teilen → „Zum Home-Bildschirm“ hinzufügen, dann startet es im Vollbild wie eine App.</p>
+  </header>
+  <section class="sec">
+    <div class="sec-h"><span>Klausuren &amp; Noten</span></div>
+    <div class="group" id="liste">
+      <!-- TOOLS-START: pro Tool ein Eintrag, alphabetisch oder nach Thema -->
+      <a class="cell toolrow" href="./notenrechner/">
+        <img class="appicon" src="./notenrechner/apple-touch-icon.png" alt="">
+        <span class="grow"><strong>Klausur-Notenrechner</strong><span class="desc">Aufgaben in Notenpunkten, frei gewichtbar in Blöcken</span></span>
+        <span class="chev" aria-hidden="true"></span>
+      </a>
+      <a class="cell toolrow" href="./gesamtnote/">
+        <img class="appicon" src="./gesamtnote/apple-touch-icon.png" alt="">
+        <span class="grow"><strong>Gesamtnote</strong><span class="desc">Gesamtnote aus gewichteten Teilnoten, z. B. mündlich und schriftlich</span></span>
+        <span class="chev" aria-hidden="true"></span>
+      </a>
+      <!-- TOOLS-ENDE -->
+    </div>
+  </section>
+</main>
+</body>
+</html>
